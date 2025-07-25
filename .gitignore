@@ -1,0 +1,12 @@
+# Ignora pastas de cache Python
+__pycache__/
+*.pyc
+
+# Ignora banco de dados local
+Clientes.db
+
+# Ignora configurações do VS Code
+.vscode/
+
+# Arquivos de anotações
+*.txt

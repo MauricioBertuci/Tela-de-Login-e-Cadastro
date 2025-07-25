@@ -43,6 +43,12 @@ function enviarCadastro(event) {
     }
     return response.json();
   })
+  // .then(async response => {
+  //   if(!response.ok) {
+  //     const erro = await response.json();
+  //     throw new Error(erro.detail || '')
+  //   }
+  // })
   .then(data => {
     alert("Cadastro realizado com sucesso!");
   })

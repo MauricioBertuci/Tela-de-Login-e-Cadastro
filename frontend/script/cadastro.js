@@ -13,9 +13,10 @@ function configurarToggleSenha() {
     
 }
 
-// Função que faz o cadastro
+// Função que faz cadastro
 function enviarCadastro(event) {
-  event.preventDefault(); // Impede o envio padrão
+  event.preventDefault(); 
+
   const nome = document.getElementById('nome').value;
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
@@ -29,34 +30,33 @@ function enviarCadastro(event) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(dados)
   })
-  // usado para retonar a mesma mensagem de erro
-  // .then(response => {
-  //   if (!response.ok) throw new Error('Dados invalidos.');
-  //   return response.json();
-  // })
 
-  // usado para retornar diferentes mensagens de erro
-  .then(async response => {
-    if (!response.ok) {
-      const erro = await response.json(); // pega ra resposta com o detal
-      throw new Error(erro.detail || 'Erro ao cadastrar.');
+  .then(async (res) => {
+  const data = await res.json();
+
+  if (!res.ok) {
+    let msg = "Erro ao cadastrar.";
+
+    if (Array.isArray(data.detail)) {
+      msg = data.detail[0].msg;  // Pega o primeiro erro de validação
+    } else if (data.detail) {
+      msg = data.detail;
     }
-    return response.json();
-  })
-  // .then(async response => {
-  //   if(!response.ok) {
-  //     const erro = await response.json();
-  //     throw new Error(erro.detail || '')
-  //   }
-  // })
-  .then(data => {
-    alert("Cadastro realizado com sucesso!");
-  })
-  .catch(error => {
-    alert("Erro ao cadastrar: " + error.message);
-  });
 
+    mensagem.textContent = msg;
+    mensagem.className = "mensagem erro";
+  } else {
+    mensagem.textContent = "Cadastro realizado com sucesso!";
+    mensagem.className = "mensagem sucesso";
+  }
+})
+
+  .catch(() => {
+    mensagem.textContent = "Errp ao conectar com o servidor"
+    mensagem.className = "mensagem erro"
+  });
 }
+
 
 // Quando a pagina carregar, ativa o botão de olho
 window.addEventListener("DOMContentLoaded", () => {

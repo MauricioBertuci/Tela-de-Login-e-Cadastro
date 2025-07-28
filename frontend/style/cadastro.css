@@ -97,3 +97,17 @@ form button:hover {
 .cadastro-link a:hover {
   text-decoration: underline;
 }
+
+.mensagem {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.mensagem.erro {
+  color: red;
+}
+
+.mensagem.sucesso {
+  color: green;
+}

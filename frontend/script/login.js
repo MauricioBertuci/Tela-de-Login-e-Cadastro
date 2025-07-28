@@ -14,29 +14,32 @@ function configurarToggleSenha() {
 
 // Função que faz o login
 function verificarLogin(event) {
-    event.preventDefault();
+  event.preventDefault(); // Impede o envio automático do form
 
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+  const mensagem = document.getElementById("mensagem");
 
-    const dados = {email,senha};
-
-    fetch("http://127.0.0.1:8000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dados) 
-    })
-    .then(response => {
-        if (!response.ok) throw new Error("Email ou senha incorretos");
-        return response.json();
-    })
-    .then(data => {
+  fetch("http://127.0.0.1:8000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha })
+  })
+    .then(async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        mensagem.textContent = data.detail || "Erro no login";
+        mensagem.className = "mensagem erro";
+      } else {
+        mensagem.textContent = "Login realizado com sucesso!";
+        mensagem.className = "mensagem sucesso";
+        // Aqui sim você pode redirecionar:
         window.location.href = "home.html";
+      }
     })
-    .catch(error => {
-        alert("Erro no login: " + error.message);
+    .catch(() => {
+      mensagem.textContent = "Erro ao conectar com o servidor.";
+      mensagem.className = "mensagem erro";
     });
 }
 

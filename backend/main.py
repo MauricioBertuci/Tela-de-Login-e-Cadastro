@@ -12,3 +12,5 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+#python -m uvicorn backend.main:app --reload

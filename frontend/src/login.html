@@ -7,27 +7,31 @@
   <link rel="stylesheet" href="/frontend/style/login.css" />
 </head>
 <body>
-  <div class="container">
-    <form class="form-login" onsubmit="verificarLogin(event)">
-      <h2>Entrar</h2>
-      <label for="email"><strong>Email</strong></label>
-      <input type="email" id="email" placeholder="Digite seu email" required />
-
-      <label for="senha"><strong>Senha</strong></label>
-      <div class="campo_senha">
-        <input type="password" id="senha" placeholder="Digite sua senha" required />
-        <span id="toggleSenha" class="olho">👁️</span> <!-- Emoji de olho-->
-      </div>
-
-      <div id="mensagem" class="mensagem"></div> <!--Mensagem de erro-->
-
-      <button type="submit">Login</button>
-
-      <p class="cadastro-link">Não tem uma conta?
-        <a href="cadastro.html">Cadastre-se</a>
-      </p>
-    </form>
-  </div>
+  <main>
+    <div class="container">
+      <form class="form-login" onsubmit="verificarLogin(event)">
+        <h2>Entrar</h2>
+        <label for="email"><strong>Email</strong></label>
+        <input type="email" id="email" placeholder="Digite seu email" required />
+        
+        <label for="senha"><strong>Senha</strong></label>
+        <div class="campo_senha">
+          <input type="password" id="senha" placeholder="Digite sua senha" required />
+          <span id="toggleSenha" class="olho">👁️</span> <!-- Emoji de olho-->
+        </div>
+        
+        <div id="mensagem" class="mensagem"></div> <!--Mensagem de erro-->
+        
+        <button type="submit">Login</button>
+        
+        <p class="cadastro-link">Não tem uma conta?
+          <a href="cadastro.html">Cadastre-se</a>
+        </p>
+      </form>
+    </div>
+  </main>
+    
+  <footer> Dev. Mauricio Bertuci Saletti</footer>
 
   <script src="/frontend/script/login.js"></script>
 </body>

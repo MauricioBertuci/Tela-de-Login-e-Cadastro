@@ -1,99 +1,235 @@
+/* login.css premium com footer fixo */
+
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Corpo como flex container vertical */
 body {
-  background: linear-gradient(to right, #4facfe, #00f2fe);
-  height: 100vh;
-}
-main {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 50px;
-  box-shadow: 0 5px 15px rgba(0,0,0,2);
-  width: 100%;
-  max-width: 400px;
-}
-
-.campo_senha {
-  display: flex;
-}
-
-.olho {
-  margin: 10px;
-  cursor: pointer;
-}
-
-.form-login h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: #333;
 }
 
-.form-login label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #555;
+/* Main ocupa todo o espaço disponível */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-login input {
+/* Animação fade-in */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Container central do formulário */
+.container {
+  background: #fff;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
   width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1.2rem;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Título */
+h2 {
+  margin-bottom: 30px;
+  color: #4facfe;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Labels */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+/* Inputs com efeito flutuante */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.4s ease;
 }
 
-.form-login button {
+input:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 10px rgba(79,172,254,0.4);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+/* Campo de senha com olho */
+/* Campo de senha ajustado */
+.campo_senha {
+  position: relative;
   width: 100%;
-  padding: 0.8rem;
-  background-color: #4facfe;
-  color: white;
-  font-size: 1rem;
-  border: none;
+}
+
+
+.campo_senha input {
+  width: 100%;
+  padding: 12px 40px 12px 15px; /* espaço extra à direita para o ícone */
+  border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.campo_senha input:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 6px rgba(79, 172, 254, 0.4);
+  outline: none;
+}
+
+.campo_senha .olho {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-size: 18px;
+  color: #aaa;
+  user-select: none;
+  transition: color 0.3s;
 }
 
-.form-login button:hover {
-  background-color: #3d8bfd;
+.campo_senha .olho:hover {
+  color: #4facfe;
 }
 
-.cadastro-link {
+/* Mensagem de erro */
+.mensagem {
+  font-size: 13px;
+  color: #ff4c4c;
+  min-height: 18px;
+  margin-bottom: 12px;
   text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Botão moderno */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(#4facfe, #00f2fe);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.3);
+  background: linear-gradient(#00f2fe, #4facfe);
+  color: #fff;
+}
+
+/* Link para cadastro */
+.cadastro-link {
+  margin-top: 18px;
+  font-size: 14px;
+  transition: color 0.3s;
 }
 
 .cadastro-link a {
-  color: #007bff;
+  color: #4facfe;
   text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
 }
 
 .cadastro-link a:hover {
   text-decoration: underline;
+  color: #00f2fe;
 }
 
-.mensagem {
-  margin-bottom: 10px;
-  font-weight: bold;
+
+/* Footer profissional */
+footer {
+  background: rgba(0, 0, 0, 0.1); /* leve transparência sobre gradiente */
+  padding: 25px 0;
+  text-align: center;
+  color: #fff;
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.mensagem.erro {
-  color: red;
+/* Container de ícones */
+footer .footer-icons {
+  display: flex;
+  gap: 25px;
 }
 
-.mensagem.sucesso {
-  color: green;
+/* Ícones */
+footer .footer-icons a {
+  color: #fff;
+  font-size: 24px;
+  transition: all 0.3s ease;
 }
 
+/* Hover animado com cor do gradiente */
+footer .footer-icons a.github:hover {
+  color: #333; /* GitHub preto */
+  transform: translateY(-4px) scale(1.2);
+}
+
+footer .footer-icons a.whatsapp:hover {
+  color: #25D366; /* WhatsApp verde */
+  transform: translateY(-4px) scale(1.2);
+}
+
+footer .footer-icons a.linkedin:hover {
+  color: #0077B5; /* LinkedIn azul */
+  transform: translateY(-4px) scale(1.2);
+}
+
+/* Texto de copyright */
+footer p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  footer {
+    padding: 20px 0;
+  }
+  
+  footer .footer-icons a {
+    font-size: 20px;
+    gap: 15px;
+  }
+}

@@ -25,12 +25,6 @@ main {
   align-items: center;
 }
 
-/* Animação fade-in */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
 /* Container central do formulário */
 .container {
   background: #fff;

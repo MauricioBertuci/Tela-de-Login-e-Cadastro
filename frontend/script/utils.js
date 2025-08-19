@@ -6,10 +6,22 @@ export function configurarToggleSenha() {
     toggleSenha.addEventListener("click", () => {
         const tipo = senhaInput.getAttribute("type") === "password" ? "text" : "password";
         senhaInput.setAttribute("type", tipo);
-
+        
         // Troca o emoji do botão
         toggleSenha.textContent = tipo === "password" ? "👁️" : "🙈";
     });
     
 }
 
+export function configurarToggleConfirmarSenha() {
+    const senhaConfirmarInput = document.getElementById("confirmar_senha");
+    const toggleConfirmarSenha = document.getElementById("toggleConfirmarSenha");
+
+    toggleConfirmarSenha.addEventListener("click", () => { // aqui estava errado
+        const tipo = senhaConfirmarInput.getAttribute("type") === "password" ? "text" : "password";
+        senhaConfirmarInput.setAttribute("type", tipo);
+
+        // Troca o emoji do botão
+        toggleConfirmarSenha.textContent = tipo === "password" ? "👁️" : "🙈";
+    });
+}

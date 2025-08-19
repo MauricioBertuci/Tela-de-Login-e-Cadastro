@@ -12,6 +12,18 @@ function configurarToggleSenha() {
     });
     
 }
+function configurarToggleConfirmarSenha() {
+    const senhaConfirmarInput = document.getElementById("confirmar_senha");
+    const toggleConfirmarSenha = document.getElementById("toggleConfirmarSenha");
+
+    toggleConfirmarSenha.addEventListener("click", () => { // aqui estava errado
+        const tipo = senhaConfirmarInput.getAttribute("type") === "password" ? "text" : "password";
+        senhaConfirmarInput.setAttribute("type", tipo);
+
+        // Troca o emoji do botão
+        toggleConfirmarSenha.textContent = tipo === "password" ? "👁️" : "🙈";
+    });
+}
 
 // Função que faz cadastro
 function enviarCadastro(event) {
@@ -61,6 +73,7 @@ function enviarCadastro(event) {
 // Quando a pagina carregar, ativa o botão de olho
 window.addEventListener("DOMContentLoaded", () => {
   configurarToggleSenha();
+  configurarToggleConfirmarSenha();
 
   const form = document.querySelector("form-cadastro")
   form.addEventListener("submit", enviarCadastro)

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro</title>
   <link rel="stylesheet" href="/frontend/style/cadastro.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -26,7 +27,13 @@
         <label for="senha"><strong>Senha</strong></label>
         <div class="campo_senha">
           <input type="password" id="senha" placeholder="Crie uma senha" required />
-          <span id="toggleSenha" class="olho">👁️</span> <!-- Emoji de olho-->
+          <span id="toggleSenha" class="olho">👁️</span> 
+        </div>
+
+        <label for="senha"><strong>Confirmação de senha</strong></label>
+        <div class="campo_senha">
+          <input type="password" id="confirmar_senha" placeholder="Confirmar senha" required />
+          <span id="toggleConfirmarSenha" class="olho">👁️</span> 
         </div>
 
         <label for="cpf"><strong>CPF</strong></label>
@@ -45,23 +52,19 @@
   </main>
 
   <footer>
-    <div class="footer-icons">
-      <a href="https://github.com/MauricioBertuci" target="_blank" class="github" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://wa.me/+5511942243471" target="_blank" class="whatsapp" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/mauricio-saletti-6509a92a3/?locale=pt_BR" target="_blank" class="linkedin"
-        title="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </div>
-    <p>© 2025 Mauricio Bertuci | Todos os direitos reservados</p>
-  </footer>
-
-  <!-- Link para Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <div class="footer-icons">
+    <a href="https://github.com/seuusuario" target="_blank" class="github" title="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="https://wa.me/+5511942243471" target="_blank" class="whatsapp" title="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/mauricio-saletti-6509a92a3/?locale=pt_BR" target="_blank" class="linkedin" title="LinkedIn">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </div>
+  <p>© 2025 Mauricio Bertuci | Todos os direitos reservados</p>
+</footer>
 
   <script src="/frontend/script/cadastro.js"></script>
 </body>

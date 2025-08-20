@@ -33,9 +33,10 @@ function enviarCadastro(event) {
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
+  const confirmarSenha = document.getElementById('confirmarSenha').value;
   const cpf = document.getElementById('cpf').value;
 
-  const dados = { nome, telefone, email, senha, cpf };
+  const dados = { nome, telefone, email, senha, confirmarSenha, cpf };
 
   fetch('http://127.0.0.1:8000/clientes', {
     method: 'POST',
@@ -43,16 +44,18 @@ function enviarCadastro(event) {
     body: JSON.stringify(dados)
   })
 
+  // pega a resposta (res) e trandforma em (res.json)
   .then(async (res) => {
   const data = await res.json();
+
 
   if (!res.ok) {
     let msg = "Erro ao cadastrar.";
 
     if (Array.isArray(data.detail)) {
-      msg = data.detail[0].msg;  // Pega o primeiro erro de validação
+      msg = data.detail[0].msg;  // Pega o primeiro erro de validação do FastAPI
     } else if (data.detail) {
-      msg = data.detail;
+      msg = data.detail;  // Exibe mensagem de erro vinda do backend
     }
 
     mensagem.textContent = msg;
@@ -64,7 +67,7 @@ function enviarCadastro(event) {
 })
 
   .catch(() => {
-    mensagem.textContent = "Errp ao conectar com o servidor"
+    mensagem.textContent = "Erro ao conectar com o servidor"
     mensagem.className = "mensagem erro"
   });
 }
@@ -78,7 +81,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form-cadastro")
   form.addEventListener("submit", enviarCadastro)
 })
-
 
 // Função que faz a mascara do telefone
 function mascaraTelefone(input) {

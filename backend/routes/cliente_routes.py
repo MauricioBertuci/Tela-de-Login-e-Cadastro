@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from backend.crud.cliente_crud import listar_clientes, inserir_cliente, deletar_cliente, buscar_login
 from backend.models.cliente import Clientes, ClientesCreate
+from backend.utils.validacoes import validar_confirmacao_senha
 
 router = APIRouter()
 
@@ -12,8 +13,10 @@ async def listar():
     
 @router.post("/clientes", response_model=Clientes)
 async def cadastrar(cliente: ClientesCreate):
+    validar_confirmacao_senha(cliente.senha, cliente.senha_confrimar)
     novo_id = inserir_cliente(cliente)
-    return Clientes(id=novo_id, **cliente.dict()) # **cliente.dict() Esse método converte o cliente (que é do tipo ClientesCreate) para um dicionário
+    # verifiar o model_dump
+    return Clientes(id=novo_id, **cliente.model_dump()) # **cliente.dict() Esse método converte o cliente (que é do tipo ClientesCreate) para um dicionário
 
 @router.delete("/clientes/{cliente_id}")
 async def deletar(cliente_id: int):

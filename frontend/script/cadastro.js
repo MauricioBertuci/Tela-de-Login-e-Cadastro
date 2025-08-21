@@ -13,7 +13,7 @@ function configurarToggleSenha() {
     
 }
 function configurarToggleConfirmarSenha() {
-    const senhaConfirmarInput = document.getElementById("confirmar_senha");
+    const senhaConfirmarInput = document.getElementById("confirmarSenha");
     const toggleConfirmarSenha = document.getElementById("toggleConfirmarSenha");
 
     toggleConfirmarSenha.addEventListener("click", () => { // aqui estava errado
@@ -36,6 +36,8 @@ function enviarCadastro(event) {
   const confirmarSenha = document.getElementById('confirmarSenha').value;
   const cpf = document.getElementById('cpf').value;
 
+  const mensagem = document.getElementById("mensagem");
+  
   const dados = { nome, telefone, email, senha, confirmarSenha, cpf };
 
   fetch('http://127.0.0.1:8000/clientes', {
@@ -78,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
   configurarToggleSenha();
   configurarToggleConfirmarSenha();
 
-  const form = document.querySelector("form-cadastro")
+  const form = document.querySelector(".form-cadastro") // VERIFICARR "."
   form.addEventListener("submit", enviarCadastro)
 })
 

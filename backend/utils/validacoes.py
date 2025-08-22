@@ -1,6 +1,5 @@
 import re
 
-from fastapi import HTTPException
 
 def validar_cpf(cpf: str) -> bool: #bool: faz retornar True ou False
     #remove tudo que não for número
@@ -19,7 +18,3 @@ def validar_cpf(cpf: str) -> bool: #bool: faz retornar True ou False
         if digito != int(cpf[i]):
             return False
     return True
-
-def validar_confirmacao_senha(senha, senha_confirmar):
-    if senha != senha_confirmar:
-        raise HTTPException(status_code=400, detail="As senhas não conferem")

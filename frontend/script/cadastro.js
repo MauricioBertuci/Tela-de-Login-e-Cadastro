@@ -37,8 +37,16 @@ function enviarCadastro(event) {
   const cpf = document.getElementById('cpf').value;
 
   const mensagem = document.getElementById("mensagem");
-  
-  const dados = { nome, telefone, email, senha, confirmarSenha, cpf };
+
+  // ✅ Validação ANTES de enviar para o backend
+  if (senha !== confirmarSenha) {
+    mensagem.textContent = "As senhas não coincidem!";
+    mensagem.className = "mensagem erro";
+    return; // Para a execução aqui
+  }
+
+  // 🔥 Agora monta só os dados que o backend espera
+  const dados = { nome, telefone, email, senha, cpf };
 
   fetch('http://127.0.0.1:8000/clientes', {
     method: 'POST',
@@ -46,33 +54,32 @@ function enviarCadastro(event) {
     body: JSON.stringify(dados)
   })
 
-  // pega a resposta (res) e trandforma em (res.json)
   .then(async (res) => {
-  const data = await res.json();
+    const data = await res.json();
 
+    if (!res.ok) {
+      let msg = "Erro ao cadastrar.";
 
-  if (!res.ok) {
-    let msg = "Erro ao cadastrar.";
+      if (Array.isArray(data.detail)) {
+        msg = data.detail[0].msg;
+      } else if (data.detail) {
+        msg = data.detail;
+      }
 
-    if (Array.isArray(data.detail)) {
-      msg = data.detail[0].msg;  // Pega o primeiro erro de validação do FastAPI
-    } else if (data.detail) {
-      msg = data.detail;  // Exibe mensagem de erro vinda do backend
+      mensagem.textContent = msg;
+      mensagem.className = "mensagem erro";
+    } else {
+      mensagem.textContent = "Cadastro realizado com sucesso!";
+      mensagem.className = "mensagem sucesso";
     }
-
-    mensagem.textContent = msg;
-    mensagem.className = "mensagem erro";
-  } else {
-    mensagem.textContent = "Cadastro realizado com sucesso!";
-    mensagem.className = "mensagem sucesso";
-  }
-})
+  })
 
   .catch(() => {
-    mensagem.textContent = "Erro ao conectar com o servidor"
-    mensagem.className = "mensagem erro"
+    mensagem.textContent = "Erro ao conectar com o servidor";
+    mensagem.className = "mensagem erro";
   });
 }
+
 
 
 // Quando a pagina carregar, ativa o botão de olho
@@ -80,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
   configurarToggleSenha();
   configurarToggleConfirmarSenha();
 
-  const form = document.querySelector(".form-cadastro") // VERIFICARR "."
+  const form = document.querySelector("form-cadastro") // VERIFICARR "."
   form.addEventListener("submit", enviarCadastro)
 })
 

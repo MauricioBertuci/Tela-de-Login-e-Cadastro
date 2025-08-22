@@ -111,6 +111,21 @@ input:focus {
   color: #4facfe;
 }
 
+.erro-campo {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
+}
+
+.sucesso-campo {
+  color: green;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
+}
+
+
 /* Mensagem de erro ou sucesso */
 .mensagem {
   font-size: 13px;

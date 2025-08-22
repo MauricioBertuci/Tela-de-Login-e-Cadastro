@@ -6,7 +6,6 @@ class ClientesCreate(BaseModel):
     email: str
     telefone: str
     senha: str
-    senha_confrimar: str
     cpf: str
 
     @validator("cpf")

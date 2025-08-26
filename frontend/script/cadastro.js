@@ -25,6 +25,7 @@ function configurarToggleConfirmarSenha() {
     });
 }
 
+
 // Função que faz cadastro
 function enviarCadastro(event) {
   event.preventDefault(); 
@@ -40,9 +41,9 @@ function enviarCadastro(event) {
 
   // ✅ Validação ANTES de enviar para o backend
   if (senha !== confirmarSenha) {
-    mensagem.textContent = "As senhas não coincidem!";
+    mensagem.textContent = "❌ As senhas não coincidem!";
     mensagem.className = "mensagem erro";
-    return; // Para a execução aqui
+    return;
   }
 
   // 🔥 Agora monta só os dados que o backend espera
@@ -61,35 +62,34 @@ function enviarCadastro(event) {
       let msg = "Erro ao cadastrar.";
 
       if (Array.isArray(data.detail)) {
-        msg = data.detail[0].msg;
+        msg = data.detail[0].msg; // pega primeiro erro do FastAPI
       } else if (data.detail) {
         msg = data.detail;
       }
 
-      mensagem.textContent = msg;
+      mensagem.textContent = "❌ " + msg;
       mensagem.className = "mensagem erro";
     } else {
-      mensagem.textContent = "Cadastro realizado com sucesso!";
+      mensagem.textContent = "✅ Cadastro realizado com sucesso!";
       mensagem.className = "mensagem sucesso";
     }
   })
 
   .catch(() => {
-    mensagem.textContent = "Erro ao conectar com o servidor";
+    mensagem.textContent = "❌ Erro ao conectar com o servidor!";
     mensagem.className = "mensagem erro";
   });
 }
 
-
-
-// Quando a pagina carregar, ativa o botão de olho
+// Quando a pagina carregar
 window.addEventListener("DOMContentLoaded", () => {
   configurarToggleSenha();
   configurarToggleConfirmarSenha();
 
-  const form = document.querySelector("form-cadastro") // VERIFICARR "."
-  form.addEventListener("submit", enviarCadastro)
-})
+  const form = document.getElementById("form-cadastro");
+  form.addEventListener("submit", enviarCadastro);
+});
+
 
 // Função que faz a mascara do telefone
 function mascaraTelefone(input) {

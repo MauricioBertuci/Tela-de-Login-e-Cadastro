@@ -18,6 +18,7 @@ function verificarLogin(event) {
 
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
+
   const mensagem = document.getElementById("mensagem");
 
   fetch("http://127.0.0.1:8000/login", {
@@ -27,6 +28,7 @@ function verificarLogin(event) {
   })
     .then(async (res) => {
       const data = await res.json();
+      
       if (!res.ok) {
         mensagem.textContent = data.detail || "Erro no login";
         mensagem.className = "mensagem erro";

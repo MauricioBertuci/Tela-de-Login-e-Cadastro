@@ -8,5 +8,3 @@ Clientes.db
 # Ignora configurações do VS Code
 .vscode/
 
-# Arquivos de anotações
-*.txt

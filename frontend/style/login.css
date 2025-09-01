@@ -82,7 +82,7 @@ input:focus {
 
 .campo_senha input {
   width: 100%;
-  padding: 12px 40px 12px 15px; /* espaço extra à direita para o ícone */
+  padding: 14px 40px 14px 15px; /* espaço extra à direita para o ícone */
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;

@@ -22,27 +22,25 @@ function verificarLogin(event) {
   const mensagem = document.getElementById("mensagem");
 
   fetch("http://127.0.0.1:8000/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, senha })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha })
   })
-    .then(async (res) => {
-      const data = await res.json();
-      
+  .then(async res => {
+      const data = await res.json().catch(() => ({})); // evita erro se não tiver JSON
       if (!res.ok) {
-        mensagem.textContent = data.detail || "Erro no login";
-        mensagem.className = "mensagem erro";
+          // Erro de login
+          mensagem.textContent = data.detail || "Erro no login";
+          mensagem.className = "mensagem erro";
       } else {
-        mensagem.textContent = "Login realizado com sucesso!";
-        mensagem.className = "mensagem sucesso";
-        // Aqui sim você pode redirecionar:
-        window.location.href = "home.html";
+          // Login correto → redireciona
+          window.location.href = data.redirect; 
       }
-    })
-    .catch(() => {
+  })
+  .catch(() => {
       mensagem.textContent = "Erro ao conectar com o servidor.";
       mensagem.className = "mensagem erro";
-    });
+  });
 }
 
 // Quando a página carregar, ativa o botão de olho

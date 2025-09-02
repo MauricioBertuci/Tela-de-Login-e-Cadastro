@@ -3,7 +3,6 @@ from typing import List
 from backend.crud.cliente_crud import listar_clientes, inserir_cliente, deletar_cliente, buscar_login
 from backend.models.cliente import Clientes, ClientesCreate
 
-
 router = APIRouter()
 
 @router.get("/clientes", response_model=List[Clientes])
@@ -28,6 +27,6 @@ async def login(dados: dict):
     senha = dados.get("senha")
     usuario = buscar_login(email, senha)
     if usuario:
-        return {"id": usuario[0], "nome": usuario[1], "email": usuario[2]}
+        return {"success": True, "redirect": "/home"}
     else:
         raise HTTPException(status_code=401, detail="Credenciais inválidas.")

@@ -21,3 +21,4 @@ def conecta_bd_cliente():
 
 # COMPLEMENTO:
 # Colocar UNIQUE no CPF
+

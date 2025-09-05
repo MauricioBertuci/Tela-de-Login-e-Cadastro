@@ -49,7 +49,7 @@ function enviarCadastro(event) {
   // 🔥 Agora monta só os dados que o backend espera
   const dados = { nome, telefone, email, senha, cpf };
 
-  fetch('http://127.0.0.1:8000/clientes', {
+  fetch('https://fastapi-com-front-b6a4hwguhsapeedk.northcentralus-01.azurewebsites.net/cadastro', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(dados)

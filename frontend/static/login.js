@@ -21,7 +21,7 @@ function verificarLogin(event) {
 
   const mensagem = document.getElementById("mensagem");
 
-  fetch("http://127.0.0.1:8000/login", {
+  fetch("https://fastapi-com-front-b6a4hwguhsapeedk.northcentralus-01.azurewebsites.net/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, senha })

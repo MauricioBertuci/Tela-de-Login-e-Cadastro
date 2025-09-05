@@ -9,9 +9,11 @@ from backend.routes.cliente_routes import router
 app = FastAPI(title="Cadastro de usuário")
 
 # 🔹 CORS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # ou lista de domínios permitidos
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
